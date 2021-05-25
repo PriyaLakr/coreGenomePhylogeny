@@ -10,6 +10,9 @@ Requirements:
 
 [MAFFT](https://mafft.cbrc.jp/alignment/software/source.html) is used for generating multiple sequence alignment.
 
+# Super matrix vs super tree approach 
+
+
 # Sequence matrix 
 
 [Sequnce matrix](http://www.ggvaidya.com/taxondna/) is used for concatenating alignments into a super matrix.
