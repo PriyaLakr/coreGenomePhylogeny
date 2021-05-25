@@ -21,3 +21,6 @@ Various tools like [IQtree](http://www.iqtree.org) and [MEGA X](https://www.mega
 # Tree visualization
 
 [iTOL](https://itol.embl.de) is used for tree visualization and editing. [Figtree](http://tree.bio.ed.ac.uk/software/figtree/) can also be used. 
+
+
+Reference data adapted from Lakra, P et al., 2021. 
