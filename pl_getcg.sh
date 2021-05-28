@@ -12,7 +12,7 @@ help(){
 	echo -e "-p (seq_iden)        Provide sequence identity value. Default is 50\n"
 	echo -e "-t (num_threads)     Provide number of threads\n"  
 	echo -e "-r (run_mode)        Provide rum mode for get_homologous. OMCL (m) or BBDH (default) or COG (g)\n"
-	echo -e "-e (outfold)       		Path to the output folder\n"
+	echo -e "-e (outfold)         Path to the output folder\n"
 	echo -e "-c (core_phylogeny)  Specify 'y' to start constructing tree. It will use the extracted core genes from get_homologouy\n"
 		#		echo -e "-r (bowtie2_run_mode)   Provide run mode for bowtie2 alignment. Two options: local or  end-to-end \n"
 			#	echo -e "-p (process_reads)      Specify 'y' to run processing function. It will process the output files and return idx stats\n"
