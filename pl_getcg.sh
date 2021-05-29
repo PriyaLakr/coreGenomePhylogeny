@@ -22,7 +22,7 @@ help(){
 
 
 while getopts "g:i:s:p:t:m:o:" opt; do
-	case "opts" in
+	case $opt in
 		g ) get_homo="$OPTARG" ;;
 		i ) infold="$OPTARG" ;;
 		s ) seq_sim="$OPTARG" ;;
@@ -30,7 +30,7 @@ while getopts "g:i:s:p:t:m:o:" opt; do
 		t ) num_threads="$OPTARG" ;;
 		m ) run_mode="$OPTARG" ;;
 		o ) outfold="$OPTARG" ;;
-		\?) help; exit
+		\?) help; exit 1 ;;
 	esac
 done
 				
