@@ -1,6 +1,7 @@
 # coreGenomePhylogeny
 
-Requirements:
+Requirements: 
+System requirements: Works well with 8GB RAM laptop and 1TB storage; but advisable to run on a machine with more memory and disk storage. 
 
 # get_homologues 
 
