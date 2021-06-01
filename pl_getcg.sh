@@ -40,7 +40,7 @@ if [[ "$get_homo" == "y" ]]; then
 	echo -e "Get homologoues software downloaded in your home directory with name: coregenomePhylo" 
 fi
 
-if [ -z "${infold}" ] | [ -z "${run_mode}" ] | [ -z "${outfold}" ] | [ -z "$seq_sim" ] | [ -z "$seq_iden" ]; then 
+if [ -z "${infold}" ] || [ -z "${run_mode}" ] || [ -z "${outfold}" ] || [ -z "$seq_sim" ] || [ -z "$seq_iden" ]; then 
 	help
 fi
 
