@@ -6,7 +6,7 @@
 
 
 help(){
-	echo - e "\n========= Usage =========\n"
+	echo -e "\n========= Usage =========\n"
 	echo -e "-i (infold)          Provide input directory path. Same to the location of get_homologous output files\n"
 	echo -e "-t (num_threads)     Provide number of threads\n"  
 #	echo -e "-r (run_mode)        Provide rum mode for get_homologous. OMCL (m) or BBDH (default) or COG (g)\n"
