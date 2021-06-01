@@ -1,4 +1,4 @@
-# coreGenomePhylogeny
+# coreGenomePhylogeny (under development)
 
 Requirements: 
 
