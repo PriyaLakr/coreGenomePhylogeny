@@ -1,10 +1,8 @@
 
 import argparse
 from Bio import AlignIO
-#from Bio import SeqIO
 import pandas as pd
 import os
-#import numpy as np
 
 
 def cal_gaps_align(file_path,in_format):
@@ -39,15 +37,15 @@ def cal_gaps_align(file_path,in_format):
 
 if __name__ == "__main__":
 
-	parser = argparse.ArgumentParser(description = "This script calculates gaps in the multiple sequence alignment") 
+	parser = argparse.ArgumentParser(description = "This script calculates gaps in the multiple sequence alignment")
 	parser.add_argument("--path", type=str, help="Path of the directory where alignment files are stored")
 	parser.add_argument("--suffix", type=str, help="Suffix of the alignment files")
-    
-    	print("Input files should be aligned first")
-
-    	args = parser.parse_args()
-    	file_path = args.path
-    	in_format = args.suffix
+	
+	print("Input files should be aligned first")
+	
+	args = parser.parse_args()
+	file_path = args.path
+	in_format = args.suffix
 
     	cal_gaps_align(file_path,in_format)
 
