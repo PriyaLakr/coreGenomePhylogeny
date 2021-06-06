@@ -1,5 +1,7 @@
 # coreGenomePhylogeny (under development)
 
+Author: Priya Lakra
+
 Requirements: 
 
 # get_homologues 
