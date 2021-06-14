@@ -17,7 +17,9 @@ Requirements:
 
 # Sequence matrix 
 
-[Sequnce matrix](http://www.ggvaidya.com/taxondna/) is used for concatenating alignments into a super matrix.
+For concatenating alignments into a super matrix, one can use 
+1. [Sequnce matrix](http://www.ggvaidya.com/taxondna/) 
+2. Custom scripts
 
 # Phylogeny 
 
