@@ -15,7 +15,7 @@ Requirements:
 # Super matrix vs super tree approach 
 
 
-# Sequence matrix 
+# Super matrix 
 
 For concatenating alignments into a super matrix, one can use 
 1. [Sequnce matrix](http://www.ggvaidya.com/taxondna/) 
