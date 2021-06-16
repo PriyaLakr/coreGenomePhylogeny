@@ -100,5 +100,6 @@ if [[ "$tree" == "y" || "$approach" == "supertree" ]]; then
 	
 fi
 
+
 echo "Process ended at: "$(date +"%T")" " | tee -a $outfold/run.info
 
