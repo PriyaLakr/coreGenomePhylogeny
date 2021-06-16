@@ -1,6 +1,8 @@
-# coreGenomePhylogeny
+# coreGenomePhylogeny (under development)
 
-Requirements:
+Author: Priya Lakra
+
+Requirements: 
 
 # get_homologues 
 
@@ -10,9 +12,14 @@ Requirements:
 
 [MAFFT](https://mafft.cbrc.jp/alignment/software/source.html) is used for generating multiple sequence alignment.
 
-# Sequence matrix 
+# Super matrix vs super tree approach 
 
-[Sequnce matrix](http://www.ggvaidya.com/taxondna/) is used for concatenating alignments into a super matrix.
+
+# Super matrix 
+
+For concatenating alignments into a super matrix, one can use 
+1. [Sequnce matrix](http://www.ggvaidya.com/taxondna/) 
+2. Custom scripts
 
 # Phylogeny 
 
@@ -21,3 +28,6 @@ Various tools like [IQtree](http://www.iqtree.org) and [MEGA X](https://www.mega
 # Tree visualization
 
 [iTOL](https://itol.embl.de) is used for tree visualization and editing. [Figtree](http://tree.bio.ed.ac.uk/software/figtree/) can also be used. 
+
+
+Reference data adapted from Lakra, P et al., 2021. 
