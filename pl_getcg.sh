@@ -40,21 +40,27 @@ if [[ "$get_homo" == "y" ]]; then
 	echo -e "Get homologoues software downloaded in your home directory with name: coregenomePhylo" 
 fi
 
-if [ -z "${infold}" ] || [ -z "${run_mode}" ] || [ -z "${outfold}" ] || [ -z "$seq_sim" ] || [ -z "$seq_iden" ]; then 
+if [[ -z "${infold}"  ||  -z "${run_mode}" ||  -z "${outfold}" ||  -z "$seq_sim"  ||  -z "$seq_iden" ]]; then 
 	help
 fi
 
 ## find name of the get_homologous directory :P name=dir; default name is get_homologous
 name=get_homologues
 
-if [[ "$extract" == "y"  &&  "$num_threads" ]]; then
-## folder containing input files either containing amino acid sequences or GenBank format
+if [[ "$extract" == "y" &&  "$num_threads" ]]; then
+	## folder containing input files either containing amino acid sequences or GenBank format
 	echo -e "\tExtracting core genome (orthologous genes) avoiding paralogous genes" 
 	./$name/get_homologues.pl -d $infold -e -S $seq_sim -C $seq_iden -n $num_threads -M $run_mode -o $outfold > $outfold/get_homologues_log.out; #storing output to a different location $outfold
 fi
 
-if [[ "$extract" == "y"  &&  -z "$num_threads" ]]; then
+if [[ "$extract" == "y" &&  -z "$num_threads" ]]; then
 ## folder containing input files either containing amino acid sequences or GenBank format
 	echo -e "\tExtracting core genome (orthologous genes) avoiding paralogous genes" 
 	./$name/get_homologues.pl -d $infold -e -S $seq_sim -C $seq_iden -n 3 -M $run_mode -o $outfold > $outfold/get_homologues_log.out; #storing output to a different location $outfold
 fi
+
+
+
+
+
+
