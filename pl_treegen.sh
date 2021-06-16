@@ -75,7 +75,7 @@ if [[ "$removegaps" == "y" ]]; then
 	
 	mkdir -p $outfold/conserved_coregenes && \
 	sort -t "," -n -k 5 $outfold/result.csv | awk -F "," '{ if ($5 < 5) print $2 }' > $outfold/coregeneNames.txt && \
-        while read i; do cp $outfold/aligned_out/${i} $outfold/conserved_coregenes; done < $outfold/coregeneNames.txt && \
+    while read i; do cp $outfold/aligned_out/${i} $outfold/conserved_coregenes; done < $outfold/coregeneNames.txt && \
 	echo "Done removing gaps" | tee -a $outfold/run.info
 	
 fi
