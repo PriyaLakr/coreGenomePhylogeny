@@ -1,4 +1,4 @@
-# coreGenomePhylogeny (under development)
+# coreGenomePhylogeny 
 
 Author: Priya Lakra
 
