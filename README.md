@@ -12,22 +12,59 @@ Author: Priya Lakra
 
 [MAFFT](https://mafft.cbrc.jp/alignment/software/source.html) is used for generating multiple sequence alignment.
 
-# Super matrix vs super tree approach 
-
-
-## Super matrix 
+### Sequence matrix (optional)
 
 For concatenating alignments into a super matrix, one can use 
-1. [Sequnce matrix](http://www.ggvaidya.com/taxondna/) 
+1. [Sequence matrix](http://www.ggvaidya.com/taxondna/) 
 2. Custom scripts
 
-## Phylogeny 
+### Phylogeny tools
 
-Various tools like [IQtree](http://www.iqtree.org) and [MEGA X](https://www.megasoftware.net) can be used for generating phylogenomic trees. 
+[IQtree](http://www.iqtree.org) and [MEGA X](https://www.megasoftware.net) can be used for generating phylogenomic trees. 
 
-# Tree visualization
+### Tree visualization tools
 
 [iTOL](https://itol.embl.de) is used for tree visualization and editing. [Figtree](http://tree.bio.ed.ac.uk/software/figtree/) can also be used. 
+
+
+# Steps:
+
+## 1. Installing all dependencies 
+	
+	`bash pl_install_depend.sh`
+	
+   You can check installation information in the file "install.info" 
+   
+## 2. Extracting core genome using get_homologues
+
+	`bash pl_getcg.sh [options]`
+	
+  for help: run `bash pl_getcg.sh -h`
+  
+## ============ Filtering orthologous genes ========== 
+
+### steps: 
+### 1. Align genes 
+### 2. select genes less than 5% gaps in their multiple sequence alignment 
+
+	 `bash pl_treegen.sh [options]`
+	
+   for help: run `bash pl_treegen.sh -h`
+	
+### 3. Create a super matrix using either the given script, your custom script and/or sequence matrix
+	
+	`bash pl_concat.sh`
+	
+   for help: run `bash pl_concat.sh -h`
+	
+### Notes: Another way is to create trees using individual gene files and concatenate individual gene trees to create a super tree. Read first if you really require this approach.  
+### "Input alignment (-s option) or partition (-p) be a directory of alignment files" requires IQtree version 2.0
+
+## Generating the phylogenomic tree
+
+	`bash pl_treegen.sh [options]`
+	
+## Visualize and edit tree newick file in your choice of tools
 
 
 Reference data adapted from Lakra, P et al., 2021. 
