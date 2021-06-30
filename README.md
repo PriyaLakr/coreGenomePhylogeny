@@ -45,7 +45,7 @@ For concatenating alignments into a super matrix, one can use
 
 ### steps: 
 ### 1. Align genes 
-### 2. select genes less than 5% gaps in their multiple sequence alignment 
+### 2. Select genes containing less than 5% gaps in their multiple sequence alignments 
 
 	 `bash pl_treegen.sh [options]`
 	
@@ -58,13 +58,12 @@ For concatenating alignments into a super matrix, one can use
    for help: run `bash pl_concat.sh -h`
 	
 ### Notes: Another way is to create trees using individual gene files and concatenate individual gene trees to create a super tree. Read first if you really require this approach.  
-### "Input alignment (-s option) or partition (-p) be a directory of alignment files" requires IQtree version 2.0
 
-## Generating the phylogenomic tree
+## 3. Generating the phylogenomic tree
 
 	`bash pl_treegen.sh [options]`
 	
-## Visualize and edit tree newick file in your choice of tools
+## 4. Visualize and edit tree newick file in your choice of tools
 
 
 Reference data adapted from Lakra, P et al., 2021. 

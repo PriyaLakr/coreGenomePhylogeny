@@ -1,11 +1,10 @@
 #!/bin/bash
 
 ## raw data is fasta files containing orthologous genes 
-## need to install mafft
-
 
 help(){
 	echo -e "\n========= Usage =========\n"
+	# bash pl_treegen.sh [-i|p|o|a|c|r|n|t|b|m] 
 	echo -e "bash pl_treegen.sh -i ~/Desktop/practice -n deinoOMCL -o ~/Desktop/practice -a y -r y -c y -p 6"
 	echo -e "-i (infold)          Provide input directory path. Same to the location of get_homologous output files\n"
 	echo -e "-p (num_threads)     Provide number of threads\n"  
@@ -17,11 +16,13 @@ help(){
 	echo -e "-t (core_phylogeny)  Specify 'y' to start constructing tree. It will use the extracted core genes from get_homologouy\n"                
 	echo -e "-b (bootstrap)       Provide the bootstrap value for the tree\n"
 	echo -e "-m (approach)        Tree approach. Choose between 'supertree' and 'supergene' approach"
+	echo -e "-s (script_path)     Provide path where all scripts of core genome phylogeny are located"
+	echo -e "\n In case of error: 'ModuleNotFoundError: No module named 'Bio' ' \nRun: pip install biopython"
 	exit 1
 }
 
 
-while getopts "i:p:o:a:c:r:n:t:b:m:" opt; do
+while getopts "i:p:o:a:c:r:n:t:b:m:s:f::h" opt; do
 	case "$opt" in
 		i ) infold="$OPTARG" ;;
 		p ) num_threads="$OPTARG" ;;
@@ -33,20 +34,28 @@ while getopts "i:p:o:a:c:r:n:t:b:m:" opt; do
 		t ) tree="$OPTARG" ;;
 		b ) bootstrap="$OPTARG" ;;
 		m ) approach="$OPTARG" ;;
-		\?) help; exit 1 ;;
+		s ) script_path="$OPTARG" ;;
+		f ) fastafile="$OPTARG" ;;
+		h ) help; exit 1 ;;
 	esac
 done
 
+if [[ -z "$align" && -z "$countgaps" && -z "$removegaps" && -z "$tree" ]]; then
+	echo -e "\nProvide parameters\n"; help
+fi
+
+if [[ "$countgaps" && -z "$script_path" ]]; then
+	echo -e "\nProvide path where all scripts of core genome phylogeny are located\n"; exit 1
+fi
+
 echo
-echo -e "Please provide absolute path" 
-echo " Process start at "$(date +"%T")" with parameters: align "$align" ; removegaps "$removegaps" ; tree "$tree" ; approach "$approach"; num_threads "$num_threads" " | tee -a $outfold/run.info
+echo -e "Please provide absolute paths\n" 
+echo "Process start at "$(date +"%T")" with parameters: align "$align" ; removegaps "$removegaps" ; tree "$tree" ; approach "$approach"; num_threads "$num_threads" " | tee -a $outfold/run.info
 echo
 
-## usage: bash pl_treegen.sh -i ~/Desktop/practice/deinocoregen_homologues_output -t 6 -n murrayiDSM11303_f0_alltaxa_algOMCL_e1_C50_S50_ -o ~/Desktop/practice -a y
+
+
 ## ============ Filtering orthologous genes ========== 
-
-## steps: Align genes -> select genes less than 5% gaps in their multiple sequence alignment -> concatente them into a super matrix or use each gene to create a phylognetic tree and then combine all those tree into a super tree 
-## pre install mafft here ... 
 
 ## ============ Align genes ==========
 if [[ "$align" == "y" ]]; then 
@@ -64,7 +73,7 @@ fi
 ## Make a scripts folder in you home directory and save pl_cal_gap.py in that folder. Or make sure edit the location of the pl_cal_gap.py script in line 61
 if [[ "$countgaps" == "y" ]]; then	
 	
-	python ~/Desktop/pl_cal_gap.py --path $outfold/aligned_out --suffix fasta && \
+	python "$script_path"/pl_cal_gap.py --path $outfold/aligned_out --suffix fasta && \
 	mv $outfold/aligned_out/result.csv $outfold && \
 	echo "Done counting gaps" | tee -a $outfold/run.info
 	
@@ -82,24 +91,26 @@ fi
 
 
 ## ============ Making tree ========== 
-## requires conda installation of IQtree; version 2.0 highlight: Input alignment (-s option) or partition (-p) can be a directory of alignment files
-if [[ "$tree" == "y" || "$approach" == "supermatrix" ]]; then
+
+
+# under development 
+#if [[ "$tree" == "y" && "$approach" == "supermatrix" ]]; then
 	
-	## supermatrix approach
-	iqtree2 -p $outfold/conserved_coregenes -B $bootstrap -T $num_threads --prefix $outfold/concat
-	echo "Done making tree using supermatrix approach" | tee -a $outfold/run.info
+	## supermatrix approach   
+	#mkdir -p $outfold/supermatrix_tree && cd $outfold/supermatrix_tree
+	#iqtree -p $outfold/conserved_coregenes -B $bootstrap -T $num_threads --prefix concat 
+	#echo "Done making tree using supermatrix approach" | tee -a $outfold/run.info
+	
+#fi
+
+
+if [[ "$tree" == "y" && -z "$approach" ]]; then
+
+	mkdir -p $outfold/IQtree && cd $outfold/IQtree
+	iqtree -s $outfold/$fastafile  -B $bootstrap -T $num_threads --prefix coretree > $outfold/IQtree/IQtree.info
+	echo "Done making maximum-likelihood phlyogenomic tree from concatenated alignment file: "$fastafile" " | tee -a $outfold/run.info
 	
 fi
 
-
-if [[ "$tree" == "y" || "$approach" == "supertree" ]]; then
-
-	## supertree approach
-	iqtree2 -S $outfold/conserved_coregenes -B $bootstrap -T $num_threads --prefix $outfold/loci
-	echo "Done making tree using supergene approach" | tee -a $outfold/run.info
-	
-fi
-
-
+echo -e "\nIQ tree generates unrooted trees by default" | tee -a $outfold/run.info
 echo "Process ended at: "$(date +"%T")" " | tee -a $outfold/run.info
-
