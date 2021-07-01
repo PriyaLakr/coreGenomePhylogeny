@@ -2,6 +2,10 @@
 
 Author: Priya Lakra
 
+# Description
+
+This is the script for constructing core genome phylogeny for taxonomic purposes. It involves extraction of core genome from the genome assemblies of closely and/or distantly related species, and employing this core genome for construction of phylogenomic tree. 
+
 # Requirements: 
 
 ### get_homologues 
@@ -29,29 +33,34 @@ For concatenating alignments into a super matrix, one can use
 
 # Steps:
 
-## 1. Installing all dependencies 
+## 1. Clone the repository with
+
+	`git clone https://github.com/PriyaLakr/coreGenomePhylogeny.git` 
+	`cd PATH/TO/coreGenomePhylogeny`
+
+## 2. Installing all dependencies 
 	
 	`bash pl_install_depend.sh`
 	
    You can check installation information in the file "install.info" 
    
-## 2. Extracting core genome using get_homologues
+## 3. Extracting core genome using get_homologues
 
 	`bash pl_getcg.sh [options]`
 	
   for help: run `bash pl_getcg.sh -h`
   
-## ============ Filtering orthologous genes ========== 
+## 4. Filtering orthologous genes 
 
-### steps: 
-### 1. Align genes 
-### 2. Select genes containing less than 5% gaps in their multiple sequence alignments 
+### Steps: 
+### 4.1. Align genes 
+### 4.2. Select genes containing less than 5% gaps in their multiple sequence alignments 
 
 	 `bash pl_treegen.sh [options]`
 	
    for help: run `bash pl_treegen.sh -h`
 	
-### 3. Create a super matrix using either the given script, your custom script and/or sequence matrix
+### 4.3. Create a super matrix using either the given script, your custom script and/or sequence matrix
 	
 	`bash pl_concat.sh`
 	
@@ -59,11 +68,11 @@ For concatenating alignments into a super matrix, one can use
 	
 ### Notes: Another way is to create trees using individual gene files and concatenate individual gene trees to create a super tree. Read first if you really require this approach.  
 
-## 3. Generating the phylogenomic tree
+## 5. Generating the phylogenomic tree
 
 	`bash pl_treegen.sh [options]`
 	
-## 4. Visualize and edit tree newick file in your choice of tools
+## 6. Visualize and edit tree newick file in your choice of tools
 
 
-Reference data adapted from Lakra, P et al., 2021. 
+Reference data adapted from Lakra, P et al., 2021.
